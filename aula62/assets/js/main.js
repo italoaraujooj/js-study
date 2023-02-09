@@ -1,6 +1,4 @@
-// Escreva uma função chamada ePaisagem que recebe
-// dois argumentos, largura e altura de uma imagem (number).
-// Retorne true se a imagem estiver no modo paisagem
+// Escreva uma função que testa se o numero é divisivel por 3 e 5 etc
 
 const FizzBuzz = (num) => {
     if (typeof(num) !== 'number') return num;
