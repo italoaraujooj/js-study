@@ -19,28 +19,25 @@
         taskInput.focus();
     }
 
-    function createDelButton(li){
-        li.innerText += ' ';
-        const delButton = document.createElement('button');
-        delButton.innerText = 'Delete';
-        delButton.setAttribute('class', 'delete');
-        li.appendChild(delButton);
-    }
-
-    /* function createDoneButton(li){
+    function createButtons(li){
         li.innerText += ' ';
         const doneButton = document.createElement('button');
+        li.innerText += ' ';
+        const delButton = document.createElement('button');
         doneButton.innerText = 'Done';
+        delButton.innerText = 'Delete';
         doneButton.setAttribute('class', 'done');
+        delButton.setAttribute('class', 'delete');
         li.appendChild(doneButton);
-    } */
+        li.appendChild(delButton);
+        
+    }
 
     function addTask(txtInput) {
         const li = createLi();
         li.innerText = txtInput;
         tasks.appendChild(li);
-        createDelButton(li);
-        //createDoneButton(li);
+        createButtons(li);
         cleanInput();
         saveTasks();
     }
@@ -58,6 +55,11 @@
             el.parentElement.remove();
             saveTasks();
         }
+
+        if (el.classList.contains('done')){
+            el.classList.add('done-task');
+            saveTasks();
+        }
     })
 
     function saveTasks(){
@@ -67,6 +69,7 @@
         for (let task of liTasks){
             let taskText = task.innerText;
             taskText = taskText.replace('Delete', '').trim();
+            taskText = taskText.replace('Done', '').trim();
             tasksList.push(taskText);
         }
 
